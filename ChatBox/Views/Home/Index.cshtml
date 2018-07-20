@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card " style="width:400px !important;margin-left:30%;margin-top:15%">
+    <div class="card-header text-center">
+        <h4>Chat Box</h4>
+    </div>
+    <div class="card-body">
+        <div class="row" style="margin-left:10%">            
+            <div class="col-sm"><input type="text" class="form-control" id="txtuser" placeholder="Username" /></div>
+            <div class="col-sm"><button id="btnChat" class="btn btn-info">Connect</button></div>
+        </div>        
+    </div>
+</div>
+<script>
+    var aLocation = '';
+    var baseurl = '';   
+    var environ = window.location.host;
+    var pathname = window.location.pathname;
+    var res = pathname.split("/");
+    if (location.hostname !== "localhost")
+        baseurl = "//" + environ + "/" + res[1];
+    if (res[1] !== undefined && res[1] !== "")
+        aLocation = "/" + res[1];
+
+    $("#btnChat").click(function () {
+        var text = $("#txtuser").val();
+        if (text != "") {
+            window.location.assign(aLocation + "/Home/Home?user=" + text.toUpperCase());
+        } else {
+            alert("Please enter username and procced");
+        }
+    });
+</script>
+

@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card " style="width:400px !important;margin-left:30%;margin-top:10%">
+    @*<div class="card-header text-center">
+        <h4>Chat Box</h4>
+    </div>
+    <div class="card-body">
+        <div class="row" style="margin-left:10%">
+            <div class="col-sm"><input type="text" class="form-control" placeholder="Username" /></div>
+            <div class="col-sm"><button id="btnChat" class="btn btn-info">Connect</button></div>
+        </div>
+    </div>*@
+    <div class="card-header">
+        Chat
+    </div>
+    <div class="card-body">
+        <div class="stuck" id="msgDiv">            
+        </div>
+        
+            <div class="row" style="margin-top:5px;">
+                <div class="col-sm-8"><input type="text" class="form-control" id="txtMesg" placeholder="message" /></div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-success" id="btnSend">Send</button>
+                </div>
+            </div>        
+    </div>
+    <input type="hidden" id="txtUser" value="@ViewBag.User" />
+</div>
+<script src="~/Scripts/jquery.signalR-2.3.0.js"></script>
+<script src="~/signalr/js"></script>
+<script>
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+    var currentUser = getUrlParameter('user');
+    var count = 0;
+    $.connection.hub.start().done(function () {
+    });
+
+    $.connection.chatHub.server.connect(currentUser);
+
+    $("#btnSend").click(function () {
+        currentUser = $("#txtUser").val();
+        var message = currentUser + " : " + $('#txtMesg').val();
+        $("#txtMesg").val("");
+        $.connection.chatHub.server.sendMessage(message);
+    });
+
+    $.connection.chatHub.client.announce = function (data) {
+        count++;
+        var message = "";
+        if (count == 1)
+            message = data;
+        else
+            message = "<br>" + data;
+        $('#msgDiv').append(message);
+    }
+
+</script>
+

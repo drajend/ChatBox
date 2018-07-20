@@ -1,0 +1,14 @@
+﻿.stuck {
+    /*position: fixed;*/
+    top: 0px;
+    left: 0px;
+    max-height: 100%;
+    width: 100%;
+    height:200px;
+    background-color: #eee;
+    overflow-y: scroll;
+}
+
+  .stuck p {
+        margin: 10px;
+  }
