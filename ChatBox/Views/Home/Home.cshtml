@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="card " style="width:400px !important;margin-left:30%;margin-top:10%">
+
+<div class="row " style="width:400px !important;margin-left:30%;margin-top:10%">    
     @*<div class="card-header text-center">
         <h4>Chat Box</h4>
     </div>
@@ -14,11 +15,11 @@
             <div class="col-sm"><button id="btnChat" class="btn btn-info">Connect</button></div>
         </div>
     </div>*@
-    <div class="card-header">
+    @*<div class="card-header">
         Chat
     </div>
-    <div class="card-body">
-        <div class="stuck" id="msgDiv">            
+    <div class="card-body">*@
+        @*<div class="stuck" id="msgDiv">            
         </div>
         
             <div class="row" style="margin-top:5px;">
@@ -26,13 +27,24 @@
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-success" id="btnSend">Send</button>
                 </div>
-            </div>        
-    </div>
+            </div>*@      
+        <div class="col-sm-12 col-sm-offset-4 frame">
+            <ul></ul>
+            <div>
+                <div class="msj-rta macro" style="margin:auto">
+                    <div class="text text-r" style="background:whitesmoke !important">
+                        <input class="mytext" placeholder="Type a message" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    @*</div>*@
     <input type="hidden" id="txtUser" value="@ViewBag.User" />
 </div>
 <script src="~/Scripts/jquery.signalR-2.3.0.js"></script>
 <script src="~/signalr/js"></script>
-<script>
+<script src="~/Scripts/ChatBox.js"></script>
+@*<script>
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -63,5 +75,5 @@
         $('#msgDiv').append(message);
     }
 
-</script>
+</script>*@
 
