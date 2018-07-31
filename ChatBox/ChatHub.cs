@@ -16,6 +16,7 @@ namespace ChatBox
             var _Msg = new JavaScriptSerializer().Deserialize<ChatModel>(strMessage);
             Clients.All.Announce(strMessage);
            // Clients.Client(AllClients[_Msg.To]).Announce(strMessage);
+            //Clients.Client(AllClients[_Msg.From]).Announce(strMessage);
         }
 
         public void Connect(string strUser)

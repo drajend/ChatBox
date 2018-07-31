@@ -29,11 +29,11 @@ $.connection.chatHub.client.announce = function (data) {
     if (count != 1) {
         console.log(data);
         var _Message = JSON.parse(data);
-        if (_Message.To != currentUser)
-            insertChat("you", _Message.Message);
-        else
+        if (_Message.From != currentUser)
             insertChat("me", _Message.Message);
-    } else {
+        else
+            insertChat("you", _Message.Message);
+    } else {        
         insertChat("me", data);
     }
     //$('#msgDiv').append(message);
